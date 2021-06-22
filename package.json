@@ -1,6 +1,6 @@
 {
   "name": "img-items",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Finds individual items inside an image and gets their size/coordinates.",
   "keywords": [
     "detect",
@@ -26,6 +26,9 @@
   "homepage": "https://github.com/kodie/img-items",
   "license": "MIT",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "standard && ava"
   },
