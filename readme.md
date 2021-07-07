@@ -16,7 +16,7 @@ Finds individual items inside an image and gets their size/coordinates. Uses [Ji
 
 ```js
 const Jimp = require('jimp')
-const imgItems = require('imgItems')
+const imgItems = require('img-items')
 
 Jimp.read('assets/feed-example.png')
   .then(image => {
