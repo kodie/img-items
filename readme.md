@@ -86,7 +86,7 @@ The image to scan for items. Accepts anything that [Jimp] accepts as a source im
 
 An object with options you can set to tweak how items are found:
 
-  * `background` (Default: `0`) - The color(s) that should be considered the background of the image. Accepts a string with a CSS hex color value (ex. `#FFFFFF`), an integer with a color hex (ex. `0xFFFFFFFF`), an array containing the before mentioned types, an integer set to `0` to use the top left pixel color, or an integer from `1` to `10` to use that number of primary colors from the image. *(Keep in mind that the more colors that are defined here, the slower the module will run.)*
+  * `background` (Default: `0`) - The color(s) that should be considered the background of the image. Accepts a string with a CSS hex color value (ex. `#FFFFFF`), an integer with a color hex (ex. `0xFFFFFFFF`), an array containing the before mentioned types, an integer set to `0` to use the top left pixel color, an integer set to `-1` to set the background color to either black or white depending on the average luminance of the image, or an integer from `1` to `10` to use that number of primary colors from the image. *(Keep in mind that the more colors that are defined here, the slower the module will run.)*
 
   * `backgroundThreshold` (Default: `5`) - An integer from `0` to `100` defining how close a color can be to the background color (using the [CIE76 Color Difference Formula](https://en.wikipedia.org/wiki/Color_difference#CIE76)) for it to be considered part of the background. `0` being an exact match.
 

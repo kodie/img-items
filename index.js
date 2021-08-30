@@ -3,6 +3,30 @@ const ColorDiff = require('color-difference')
 const ColorThief = require('color-thief-jimp')
 const Jimp = require('jimp')
 
+const getAverageLuminance = (img, samples) => {
+  if (!samples) samples = 30
+
+  const xStep = (img.bitmap.width / samples)
+  const yStep = (img.bitmap.height / samples)
+  let totalLuminance = 0
+  let sampleCount = 1
+
+  for (let y = 0; y < img.bitmap.height; y += yStep) {
+    for (let x = 0; x < img.bitmap.width; x += xStep) {
+      let color = img.getPixelColor(x, y)
+      let rgb = Jimp.intToRGBA(color)
+      let luminance = (rgb.r + rgb.r + rgb.g + rgb.g + rgb.b + rgb.b) / 6
+
+      totalLuminance += luminance
+      sampleCount++
+    }
+  }
+
+  const averageLuminance = totalLuminance / sampleCount
+
+  return (averageLuminance / 255) * 100
+}
+
 const isBackground = (color, bgColors, threshold) => {
   let c = Jimp.intToRGBA(color)
   color = Color({ r: c.r, g: c.g, b: c.b }).hex().toUpperCase()
@@ -39,7 +63,13 @@ module.exports = (image, options, callback) => {
       if (opts.heightThreshold === null) opts.heightThreshold = opts.sizeThreshold
       if (opts.widthThreshold === null) opts.widthThreshold = opts.sizeThreshold
 
-      if (opts.background === 0) {
+      if (opts.background === -1) {
+        if (getAverageLuminance(img) >= 50) {
+          opts.background = '#ffffff'
+        } else {
+          opts.background = '#000000'
+        }
+      } else if (opts.background === 0) {
         opts.background = [img.getPixelColor(0, 0)]
       } else if (typeof opts.background === 'number' && opts.background >= 1 && opts.background <= 10) {
         const palette = ColorThief.getPalette(img, opts.background)
