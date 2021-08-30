@@ -1,6 +1,6 @@
 {
   "name": "img-items",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Finds individual items inside an image and gets their size/coordinates.",
   "keywords": [
     "detect",
