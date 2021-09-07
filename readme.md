@@ -137,7 +137,12 @@ A function to run after the scan is finished that receives any errors that occur
 ]
 ```
 
+## Related
+
+ - [php-img-items](https://github.com/kodie/php-img-items) - A PHP port of this module.
+
 ## License
+
 MIT. See the [license.md file](license.md) for more info.
 
 [Jimp]: https://www.npmjs.com/package/jimp
